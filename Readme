@@ -1,0 +1,60 @@
+jonashaslbeck@gmail.com, April 2020
+
+This folder contains the code to fully reproduce all figures and results in the manuscript "Estimating the Number of Clusters via Normalized Cluster Instability";
+
+1) Simulation
+
+Helper_Functions.R: Functions to generate data and to call different clustering methods
+submit_all.sh: A bash script that calls submit_jobs.sh with different seeds 1:100
+submit_jobs.sh: A bash script that submits a job to the LISA cluster system at the University of Amsterdam, consisting of simulation.R
+simulation.R: The simulation script, which is called by submit_jobs.sh with seeds 1:100; each of the 100 runs is additionally parallelized on 6 cores and takes < 2h to compute with 2GHZ on each core.
+
+The script assumes that there is a folder /clusterSim in the HOME directory of a UNIX system, and that this folder contains an output folder: /clusterSim/output.
+
+The simulation can also repeated locally by simply writing a for loop over iter 1:100 in simulation.R. However, if only a single core is available, this can take up to 6 * 2 * 100 hours.
+
+The output folder in the reproducibility archive contains the output of this simulation.
+
+
+2) Tables and Figures
+
+Figure_1_Illustration.R: R-code to reproduce Figure 3
+Figure_2_InstabilityPath.R: R-code to reproduce Figure 2
+Figure_3_Scenarios.R: R-code to reproduce Figure 4
+Figure_4_Convergence.R: R-code to reproduce Figure 5
+Figure_5_JumpStatistic.R: R-code to reproduce Figure 6
+
+Table_1and2_SimulationResults.R: preprocessing of simulation results & plotting of Table 1 and Table 2 (in Appendix)
+
+
+3) Versions of R-packages
+
+
+> sessionInfo()
+R version 3.6.0 (2019-04-26)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.2
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+Random number generation:
+ RNG:     Mersenne-Twister 
+ Normal:  Inversion 
+ Sample:  Rounding 
+ 
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] cstab_0.2-4 Rcpp_1.0.1 
+
+loaded via a namespace (and not attached):
+[1] compiler_3.6.0 tools_3.6.0    yaml_2.2.0    
+
+
+
